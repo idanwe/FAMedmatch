@@ -8,19 +8,39 @@
  * Controller of the medMatchApp
  */
 angular.module('medMatchApp')
-  .controller('MainCtrl', function ($scope, $famous) {
-    var Transitionable = $famous['famous/transitions/Transitionable'];
-    var Timer = $famous['famous/utilities/Timer'];
+  .controller('MainCtrl', function ($scope, $famous, MonthsBuffer) {
+    var EventHandler = $famous['famous/core/EventHandler'];
+    $scope.scrollViewEventHandler = new EventHandler();
 
-    $scope.spinner = {
-      speed: 55
+    $scope.monthGridOptions = {
+      dimensions: [1, 6]
     };
-    $scope.rotateY = new Transitionable(0);
 
-    //run function on every tick of the Famo.us engine
-    Timer.every(function(){
-      var adjustedSpeed = parseFloat($scope.spinner.speed) / 1200;
-      $scope.rotateY.set($scope.rotateY.get() + adjustedSpeed);
-    }, 1);
+    $scope.months = new MonthsBuffer();
 
+    // should move to mmWeek
+    $scope.weekGridOptions = {
+      dimensions: [7, 1]
+    };
+
+    $scope.generateDayArray = function (week) {
+      var dayArray = [];
+      var dayOfWeek;
+      var dayOfMonth;
+      var isPreviousMonth;
+      var isNextMonth;
+
+      for (dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+        dayOfMonth = week.startDate + (dayOfWeek - week.startDay);
+        isPreviousMonth = dayOfWeek < week.startDay;
+        isNextMonth = dayOfMonth > week.daysInMonth;
+        if (isPreviousMonth || isNextMonth) {
+          dayArray.push('');
+        } else {
+          dayArray.push(dayOfMonth);
+        }
+      }
+
+      return dayArray;
+    };
   });

@@ -41,6 +41,8 @@
     <![endif]-->
     <!-- endbuild -->
 
+    <script src="bower_components/famous/dist/famous-global.js"></script>
+
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -49,16 +51,23 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/famous/dist/famous-global.js"></script>
     <script src="bower_components/famous-angular/dist/famous-angular.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/famous-angular-infinitescroll/faInfiniteScroll.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main-ctrl.js"></script>
-        <script src="scripts/controllers/about-ctrl.js"></script>
+
+        <script src="scripts/directives/mm-week.js"></script>
+
+        <script src="scripts/services/date-srv.js"></script>
+        <script src="scripts/services/famous-helper.js"></script>
+        <script src="scripts/services/month-srv.js"></script>
+        <script src="scripts/services/months-buffer.js"></script>
         <!-- endbuild -->
 </body>
 </html>

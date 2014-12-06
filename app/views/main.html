@@ -1,24 +1,32 @@
 <fa-app class="full-screen">
-  <!-- Container modifier, which we're rotating over the y axis -->
-  <fa-modifier fa-origin="[.5, .5]" fa-align="[.5, .5]" fa-rotate-y="rotateY.get()">
 
-    <!-- Front face -->
-    <fa-surface fa-size="[true, true]" fa-color="'rgb(255,255,250)'">
-      <img class="logo" ng-src="images/famous-logo.svg" style="width: 200px; height: 200px;"/>
-    </fa-surface>
+  <fa-scroll-view id="scrollView" fa-pipe-from="scrollViewEventHandler" fa-start-index="months.length / 2">
 
-    <!-- Back face:  same image, rotated pi radians -->
-    <fa-modifier fa-rotate-y="3.14159">
-      <fa-surface fa-size="[true, true]" fa-color="'rgb(255,255,250)'">
-        <img class="logo" ng-src="images/famous-logo.svg" style="width: 200px; height: 200px;" />
-      </fa-surface>
-    </fa-modifier>
+    <!-- Months -->
+    <fa-view ng-repeat="month in months">
 
-  </fa-modifier>
+      <!-- Month -->
+      <fa-modifier>
+        <fa-surface fa-pipe-to="scrollViewEventHandler" fa-color="'gold'">{{month.name}}</fa-surface>
+      </fa-modifier>
 
-  <fa-modifier fa-origin="[.5, .9]" fa-size="[200, 100]">
-    <fa-surface>
-      <input style="width: 100%; text-align: center;" type="range" min="10" max="100" ng-model="spinner.speed" />
-    </fa-surface>
-  </fa-modifier>
+      <fa-modifier fa-translate="[0, 60, 0]">
+        <fa-grid-layout fa-options="monthGridOptions">
+          <fa-modifier ng-repeat="week in month.weeks track by $index">
+
+            <!-- Week -->
+            <fa-grid-layout fa-options="weekGridOptions">
+              <fa-modifier ng-repeat="day in generateDayArray(week) track by $index">
+                <fa-surface fa-background-color="'transparent'" fa-border-color="'black'" fa-pipe-to="scrollViewEventHandler">{{day}}</fa-surface>
+             </fa-modifier>
+            </fa-grid-layout>
+
+          </fa-modifier>
+        </fa-grid-layout>
+      </fa-modifier>
+
+    </fa-view>
+
+  </fa-scroll-view>
+
 </fa-app>
