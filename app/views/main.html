@@ -16,7 +16,7 @@
 
             <!-- Week -->
             <fa-grid-layout fa-options="weekGridOptions">
-              <fa-modifier ng-repeat="day in generateDayArray(week) track by $index">
+              <fa-modifier ng-repeat="day in week.days track by $index">
                 <fa-surface fa-background-color="'transparent'" fa-border-color="'black'" fa-pipe-to="scrollViewEventHandler">{{day}}</fa-surface>
              </fa-modifier>
             </fa-grid-layout>

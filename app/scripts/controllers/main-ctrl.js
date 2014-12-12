@@ -23,24 +23,6 @@ angular.module('medMatchApp')
       dimensions: [7, 1]
     };
 
-    $scope.generateDayArray = function (week) {
-      var dayArray = [];
-      var dayOfWeek;
-      var dayOfMonth;
-      var isPreviousMonth;
-      var isNextMonth;
 
-      for (dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
-        dayOfMonth = week.startDate + (dayOfWeek - week.startDay);
-        isPreviousMonth = dayOfWeek < week.startDay;
-        isNextMonth = dayOfMonth > week.daysInMonth;
-        if (isPreviousMonth || isNextMonth) {
-          dayArray.push('');
-        } else {
-          dayArray.push(dayOfMonth);
-        }
-      }
 
-      return dayArray;
-    };
   });

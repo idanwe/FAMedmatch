@@ -11,6 +11,27 @@ angular.module('medMatchApp')
   .service('MonthService', function (dateService) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
+    function generateDays (week) {
+      var days = [];
+      var dayOfWeek;
+      var dayOfMonth;
+      var isPreviousMonth;
+      var isNextMonth;
+
+      for (dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+        dayOfMonth = week.startDate + (dayOfWeek - week.startDay);
+        isPreviousMonth = dayOfWeek < week.startDay;
+        isNextMonth = dayOfMonth > week.daysInMonth;
+        if (isPreviousMonth || isNextMonth) {
+          days.push('');
+        } else {
+          days.push(dayOfMonth);
+        }
+      }
+
+      return days;
+    };
+
     function Month (month, year) {
       this.weeks = [];
       this.month = month;
@@ -25,14 +46,17 @@ angular.module('medMatchApp')
 
       // update weeks of month
       for (var i = 0; i < 6; i++) {
-        this.weeks.push({
+        var week = {
           startDay: i ? 0 : this.firstDay,
           startDate: i ? (7 - (this.firstDay) + ((i - 1) * 7)) + 1 : 1,
           daysInMonth: this.daysInMonth,
           month: this.month,
           year: this.year,
-          week: i + 1
-        });
+          week: i + 1,
+        };
+
+        week.days = generateDays(week);
+        this.weeks.push(week);
       }
     }
 
