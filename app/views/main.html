@@ -1,32 +1,45 @@
 <fa-app class="full-screen">
 
-  <fa-scroll-view id="scrollView" fa-pipe-from="scrollViewEventHandler" fa-start-index="months.length / 2">
+  <fa-header-footer-layout fa-options="layoutOptions">
 
-    <!-- Months -->
-    <fa-view ng-repeat="month in months">
-
-      <!-- Month -->
+    <fa-view>
       <fa-modifier>
-        <fa-surface fa-pipe-to="scrollViewEventHandler" fa-color="'gold'">{{month.name}}</fa-surface>
+        <fa-surface class="header">{{currentYear}}</fa-surface>
       </fa-modifier>
-
-      <fa-modifier fa-translate="[0, 60, 0]">
-        <fa-grid-layout fa-options="monthGridOptions">
-          <fa-modifier ng-repeat="week in month.weeks track by $index">
-
-            <!-- Week -->
-            <fa-grid-layout fa-options="weekGridOptions">
-              <fa-modifier ng-repeat="day in week.days track by $index">
-                <fa-surface fa-background-color="'transparent'" fa-border-color="'black'" fa-pipe-to="scrollViewEventHandler">{{day}}</fa-surface>
-             </fa-modifier>
-            </fa-grid-layout>
-
-          </fa-modifier>
-        </fa-grid-layout>
-      </fa-modifier>
-
     </fa-view>
 
-  </fa-scroll-view>
+    <fa-scroll-view id="scrollView"
+        fa-pipe-from="surfaceEventHandler"
+        fa-pipe-to="scrollViewEventHandler"
+        fa-start-index="startIndex">
+
+      <!-- Months -->
+      <fa-view ng-repeat="month in months">
+
+        <!-- Month -->
+        <fa-modifier>
+          <fa-surface fa-pipe-to="scrollViewEventHandler" fa-color="'gold'">{{month.name}}</fa-surface>
+        </fa-modifier>
+
+        <fa-modifier fa-translate="[0, 60, 0]">
+          <fa-grid-layout fa-options="monthGridOptions">
+            <fa-modifier ng-repeat="week in month.weeks track by $index">
+
+              <!-- Week -->
+              <fa-grid-layout fa-options="weekGridOptions">
+                <fa-modifier ng-repeat="day in week.days track by $index">
+                  <fa-surface fa-background-color="'transparent'" fa-border-color="'black'" fa-pipe-to="scrollViewEventHandler">{{day}}</fa-surface>
+               </fa-modifier>
+              </fa-grid-layout>
+
+            </fa-modifier>
+          </fa-grid-layout>
+        </fa-modifier>
+
+      </fa-view>
+
+    </fa-scroll-view>
+
+  </fa-header-footer-layout>
 
 </fa-app>
