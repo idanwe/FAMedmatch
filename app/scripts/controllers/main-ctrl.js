@@ -21,10 +21,6 @@ angular.module('medMatchApp')
       height: $window.innerHeight
     };
 
-    $scope.monthGridOptions = {
-      dimensions: [1, 6]
-    };
-
     $scope.surfaceEventHandler = new EventHandler();
     $scope.scrollViewEventHandler = new EventHandler();
 
@@ -35,6 +31,9 @@ angular.module('medMatchApp')
       });
     });
 
+    $scope.getMonthGridOptions = function (month) {
+      return { dimensions: [1, month.numOfWeeks] };
+    };
 
     // Init
     $scope.months = new MonthsBuffer();

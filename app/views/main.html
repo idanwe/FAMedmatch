@@ -23,7 +23,7 @@
           </fa-modifier>
 
           <fa-modifier fa-translate="[0, 60, 0]">
-            <fa-grid-layout fa-options="monthGridOptions">
+            <fa-grid-layout fa-options="getMonthGridOptions(month)">
               <fa-modifier ng-repeat="week in month.weeks track by $index">
 
                 <!-- Week -->

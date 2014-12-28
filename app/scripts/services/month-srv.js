@@ -30,7 +30,7 @@ angular.module('medMatchApp')
       }
 
       return days;
-    };
+    }
 
     function Month (month, year) {
       this.weeks = [];
@@ -58,6 +58,10 @@ angular.module('medMatchApp')
         week.days = generateDays(week);
         this.weeks.push(week);
       }
+
+      this.numOfWeeks = _.filter(this.weeks, function (week) {
+        return _.compact(week.days).length;
+      }).length;
     }
 
     return Month;
