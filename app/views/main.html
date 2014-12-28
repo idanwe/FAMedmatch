@@ -15,27 +15,29 @@
 
       <!-- Months -->
       <fa-view ng-repeat="month in months">
+        <fa-modifier fa-translate="[0, (viewSize.height - layoutOptions.headerSize) * 0.1, 0]" fa-size="[undefined, (viewSize.height - layoutOptions.headerSize) * 0.9]">
 
-        <!-- Month -->
-        <fa-modifier>
-          <fa-surface fa-pipe-to="scrollViewEventHandler" fa-color="'gold'">{{month.name}}</fa-surface>
+          <!-- Month -->
+          <fa-modifier fa-size="[undefined, 60]">
+            <fa-surface fa-pipe-to="surfaceEventHandler" fa-color="'gold'">{{month.name}} ({{month.month}}) {{month.year}}</fa-surface>
+          </fa-modifier>
+
+          <fa-modifier fa-translate="[0, 60, 0]">
+            <fa-grid-layout fa-options="monthGridOptions">
+              <fa-modifier ng-repeat="week in month.weeks track by $index">
+
+                <!-- Week -->
+                <fa-grid-layout fa-options="weekGridOptions">
+                  <fa-modifier ng-repeat="day in week.days track by $index">
+                    <fa-surface class="day" fa-pipe-to="surfaceEventHandler">{{day}}</fa-surface>
+                 </fa-modifier>
+                </fa-grid-layout>
+
+              </fa-modifier>
+            </fa-grid-layout>
+          </fa-modifier>
+
         </fa-modifier>
-
-        <fa-modifier fa-translate="[0, 60, 0]">
-          <fa-grid-layout fa-options="monthGridOptions">
-            <fa-modifier ng-repeat="week in month.weeks track by $index">
-
-              <!-- Week -->
-              <fa-grid-layout fa-options="weekGridOptions">
-                <fa-modifier ng-repeat="day in week.days track by $index">
-                  <fa-surface fa-background-color="'transparent'" fa-border-color="'black'" fa-pipe-to="scrollViewEventHandler">{{day}}</fa-surface>
-               </fa-modifier>
-              </fa-grid-layout>
-
-            </fa-modifier>
-          </fa-grid-layout>
-        </fa-modifier>
-
       </fa-view>
 
     </fa-scroll-view>

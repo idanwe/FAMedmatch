@@ -8,12 +8,17 @@
  * Controller of the medMatchApp
  */
 angular.module('medMatchApp')
-  .controller('MainCtrl', function ($scope, $famous, MonthsBuffer) {
+  .controller('MainCtrl', function ($window, $scope, $famous, MonthsBuffer) {
     var EventHandler = $famous['famous/core/EventHandler'];
 
     $scope.layoutOptions = {
       headerSize: 44,
       footerSize: 60
+    };
+
+    $scope.viewSize = {
+      width: $window.innerWidth,
+      height: $window.innerHeight
     };
 
     $scope.monthGridOptions = {
@@ -41,7 +46,4 @@ angular.module('medMatchApp')
     $scope.weekGridOptions = {
       dimensions: [7, 1]
     };
-
-
-
   });
