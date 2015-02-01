@@ -22,8 +22,16 @@ angular
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        views: {
+          '': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+          },
+          'calendar@main': {
+            controller: 'CalendarCtrl',
+            templateUrl: 'views/calendar.html'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');

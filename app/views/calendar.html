@@ -1,0 +1,30 @@
+<fa-scroll-view id="monthScrollView"
+    fa-pipe-from="monthScrollViewEventHandler"
+    fa-pipe-to="scrollViewEventHandler"
+    fa-start-index="startIndex">
+
+  <!-- Months -->
+  <fa-view ng-repeat="month in months">
+
+    <!-- Month -->
+    <fa-modifier fa-size="[undefined, 60]">
+      <fa-surface fa-pipe-to="monthScrollViewEventHandler" fa-color="'gold'">{{month.name}} ({{month.month}}) {{month.year}}</fa-surface>
+    </fa-modifier>
+
+    <fa-grid-layout fa-options="getMonthGridOptions(month)">
+
+      <!-- Week -->
+      <fa-grid-layout ng-repeat="week in month.weeks track by $index"
+                      fa-options="weekGridOptions">
+        <fa-surface ng-repeat="day in week.days track by $index"
+                    class="day"
+                    fa-pipe-to="monthScrollViewEventHandler">
+          {{day}}
+        </fa-surface>
+      </fa-grid-layout>
+
+    </fa-grid-layout>
+
+  </fa-view>
+
+</fa-scroll-view>

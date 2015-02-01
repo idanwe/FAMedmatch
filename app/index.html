@@ -21,7 +21,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view></div>
+    <fa-app class="full-screen">
+        <div ui-view></div>
+    </fa-app>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -54,12 +56,12 @@
     <script src="bower_components/famous-angular/dist/famous-angular.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-    <script src="bower_components/famous-angular-infinitescroll/faInfiniteScroll.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/calendar-ctrl.js"></script>
         <script src="scripts/controllers/main-ctrl.js"></script>
 
         <script src="scripts/directives/mm-week.js"></script>
