@@ -6,7 +6,10 @@
     </fa-modifier>
   </fa-view>
 
-  <div ui-view="calendar"></div>
+  <fa-flexible-layout fa-options="flexibleLayoutOptions">
+    <div ui-view="calendar"></div>
+    <div ui-view="day"></div>
+  </fa-flexible-layout>
 
   <fa-view>
     <fa-surface class="footer" fa-background-color="'rgba(255,255,255,.93)'">Footer</fa-surface>

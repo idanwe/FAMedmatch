@@ -16,6 +16,11 @@ angular.module('medMatchApp')
       footerSize: 60
     };
 
+    $scope.flexibleLayoutOptions = {
+      ratios: [0.6, 0.4],
+      direction: 1 //FlexibleLayout.DIRECTION_Y
+    };
+
     $scope.scrollViewEventHandler = new EventHandler();
 
     $scope.scrollViewEventHandler.on('pageChange', function (options) {

@@ -30,6 +30,10 @@ angular
           'calendar@main': {
             controller: 'CalendarCtrl',
             templateUrl: 'views/calendar.html'
+          },
+          'day@main': {
+            controller: 'DayCtrl',
+            templateUrl: 'views/day.html'
           }
         }
       });
