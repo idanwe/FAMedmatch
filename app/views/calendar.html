@@ -2,11 +2,13 @@
   <fa-scroll-view id="monthScrollView"
       fa-pipe-from="monthScrollViewEventHandler"
       fa-pipe-to="scrollViewEventHandler"
-      fa-start-index="startIndex">
+      fa-start-index="startIndex"
+      fa-options="{ paginated: true }">
 
     <!-- Months -->
     <fa-view ng-repeat="month in months">
 
+      <fa-modifier fa-size="getSize()">
       <!-- Month -->
       <fa-modifier fa-size="[undefined, 60]">
         <fa-surface fa-pipe-to="monthScrollViewEventHandler" fa-color="'gold'">{{month.name}} ({{month.month}}) {{month.year}}</fa-surface>
@@ -17,14 +19,15 @@
         <!-- Week -->
         <fa-grid-layout ng-repeat="week in month.weeks track by $index"
                         fa-options="weekGridOptions">
-          <fa-surface ng-repeat="day in week.days track by $index"
-                      class="day"
+          <fa-surface class="day"
+                      ng-repeat="day in week.days track by $index"
                       fa-pipe-to="monthScrollViewEventHandler">
             {{day}}
           </fa-surface>
         </fa-grid-layout>
 
       </fa-grid-layout>
+      </fa-modifier>
 
     </fa-view>
 

@@ -18,6 +18,15 @@ angular.module('medMatchApp')
     };
 
     // Init
+    $scope.getSize = function () {
+      // Here we should calculate the real size of each month
+      // because we use "paginated" scrollview and due to
+      // you can't set "true" size to element in FA scrollview
+      // for real implementation look at
+      //  * https://github.com/Famous/famous-angular/issues/239
+      //  * http://stackoverflow.com/questions/26445552/scroll-view-not-scrolling-with-surface-fa-size-undefined-true/26534407#26534407
+      return [undefined, 350];
+    };
 
     // should move to mmWeek
     $scope.weekGridOptions = {
